@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-exporter-config
+data:
+  .my.cnf: |
+    [client]
+    user=root
+    password=1234
+    host=oncall-mysql
+    port=3306

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-exporter
+  labels:
+    app.kubernetes.io/name: mysql-exporter
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9104"
+    prometheus.io/path: "/metrics"
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: mysql-exporter
+  ports:
+  - name: metrics
+    protocol: TCP
+    port: 9104
+    targetPort: 9104
