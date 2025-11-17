@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sla-aggregator-service
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9091"
+    prometheus.io/path: "/metrics"
+spec:
+  selector:
+    app: sla-aggregator
+  ports:
+    - protocol: TCP
+      port: 9091
+      targetPort: 9091

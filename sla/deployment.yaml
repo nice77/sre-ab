@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sla-aggregator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sla-aggregator
+  template:
+    metadata:
+      labels:
+        app: sla-aggregator
+    spec:
+      containers:
+        - name: sla-aggregator
+          image: nicetenstein/sla:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9091
+          envFrom:
+            - configMapRef:
+                name: sla-aggregator-config

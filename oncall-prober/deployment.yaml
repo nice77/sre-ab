@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oncall-prober
+  annotations:
+    sage/group: "kpfu_minnullin"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oncall-prober
+  template:
+    metadata:
+      labels:
+        app: oncall-prober
+    spec:
+      containers:
+        - name: oncall-prober
+          image: nicetenstein/prober:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9081
+          envFrom:
+            - configMapRef:
+                name: oncall-prober-config
