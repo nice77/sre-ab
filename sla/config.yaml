@@ -6,5 +6,5 @@ data:
   SLA_PROBER_METRICS_URL: "http://oncall-prober-service:9081/metrics"
   SLA_SCRAPE_INTERVAL: "30"
   SLA_WINDOW_SIZE: "12"
-  SLA_LOG_LEVEL: "INFO"
+  SLA_LOG_LEVEL: "DEBUG"
   SLA_METRICS_PORT: "9091"
