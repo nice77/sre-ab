@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+  annotations:
+    sage/group: "kpfu_minnullin"
+  labels:
+    app: my-app
+    app.kubernetes.io/name: my-app
+    app.kubernetes.io/component: web
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: my-app
+      app.kubernetes.io/name: my-app
+      app.kubernetes.io/component: web
+  template:
+    metadata:
+      labels:
+        app: my-app
+        app.kubernetes.io/name: my-app
+        app.kubernetes.io/component: web
+    spec:
+      containers:
+        - name: my-app
+          image: containersol/k8s-deployment-strategies
+          ports:
+            - containerPort: 8080
+            - containerPort: 9101  # порт метрик
+          env:
+            - name: VERSION
+              value: "v2.0.0"
